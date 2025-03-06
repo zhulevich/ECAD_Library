@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAD_Library", "ECAD_Library\ECAD_Library\ECAD_Library.csproj", "{0A4A5D35-EF2F-4B89-8866-BBFC0EA22342}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAD_Library.Android", "ECAD_Library\ECAD_Library.Android\ECAD_Library.Android.csproj", "{4CC19465-7C60-4473-9F4F-DCBCD4B6DF96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAD_Library.Desktop", "ECAD_Library\ECAD_Library.Desktop\ECAD_Library.Desktop.csproj", "{79E3F7F8-8898-4F2E-BDB5-75ACCE792637}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAD_Library.iOS", "ECAD_Library\ECAD_Library.iOS\ECAD_Library.iOS.csproj", "{61571F1F-1F2C-4EE5-A47D-34FDCB752F7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAD_Library.Browser", "ECAD_Library\ECAD_Library.Browser\ECAD_Library.Browser.csproj", "{49DB040D-1FC9-47C3-B124-A2F632B66A7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A4A5D35-EF2F-4B89-8866-BBFC0EA22342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4A5D35-EF2F-4B89-8866-BBFC0EA22342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4A5D35-EF2F-4B89-8866-BBFC0EA22342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4A5D35-EF2F-4B89-8866-BBFC0EA22342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC19465-7C60-4473-9F4F-DCBCD4B6DF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC19465-7C60-4473-9F4F-DCBCD4B6DF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC19465-7C60-4473-9F4F-DCBCD4B6DF96}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4CC19465-7C60-4473-9F4F-DCBCD4B6DF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC19465-7C60-4473-9F4F-DCBCD4B6DF96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC19465-7C60-4473-9F4F-DCBCD4B6DF96}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{79E3F7F8-8898-4F2E-BDB5-75ACCE792637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79E3F7F8-8898-4F2E-BDB5-75ACCE792637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79E3F7F8-8898-4F2E-BDB5-75ACCE792637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79E3F7F8-8898-4F2E-BDB5-75ACCE792637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61571F1F-1F2C-4EE5-A47D-34FDCB752F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61571F1F-1F2C-4EE5-A47D-34FDCB752F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61571F1F-1F2C-4EE5-A47D-34FDCB752F7E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{61571F1F-1F2C-4EE5-A47D-34FDCB752F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61571F1F-1F2C-4EE5-A47D-34FDCB752F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61571F1F-1F2C-4EE5-A47D-34FDCB752F7E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{49DB040D-1FC9-47C3-B124-A2F632B66A7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49DB040D-1FC9-47C3-B124-A2F632B66A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49DB040D-1FC9-47C3-B124-A2F632B66A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49DB040D-1FC9-47C3-B124-A2F632B66A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D741850-447E-4266-9936-2D34D48AE9C8}
+	EndGlobalSection
+EndGlobal
