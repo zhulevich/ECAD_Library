@@ -11,17 +11,30 @@
     <vm:MainViewModel />
   </Design.DataContext>
 	<Grid>
-		<controls:CanvasControl />
-		<ItemsControl ItemsSource="{Binding PaletteItems}"
-					  HorizontalAlignment="Right">
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Orientation="Horizontal">
-						<Image Source="{Binding Icon}" Width="25" Height="24" Margin="5"/>
-						<TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-					</StackPanel>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<controls:CanvasControl Grid.Column="0" />
+		<Rectangle Grid.Column="1"
+           Width="4"
+           Fill="LightBlue"
+           VerticalAlignment="Stretch"
+           RadiusX="60" RadiusY="150" 
+			Margin="10,0"/>
+			<ItemsControl Grid.Column="2"
+						  ItemsSource="{Binding PaletteItems}"
+						  HorizontalAlignment="Right"
+						  VerticalAlignment="Center">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Vertical">
+							<Image Source="{Binding Icon}" Width="50" Height="60" Margin="0,0,0,0"/>
+							<TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontStyle="Oblique" Margin="0,-13,0,0"/>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
 	</Grid>
 </UserControl>
