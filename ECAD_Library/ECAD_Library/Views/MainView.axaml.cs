@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using ECAD_Library.ViewModels;
 
 namespace ECAD_Library.Views
 {
@@ -7,6 +8,7 @@ namespace ECAD_Library.Views
         public MainView()
         {
             InitializeComponent();
+            
         }
     }
 }

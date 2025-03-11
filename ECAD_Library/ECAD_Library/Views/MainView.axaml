@@ -12,5 +12,16 @@
   </Design.DataContext>
 	<Grid>
 		<controls:CanvasControl />
+		<ItemsControl ItemsSource="{Binding PaletteItems}"
+					  HorizontalAlignment="Right">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="{Binding Icon}" Width="25" Height="24" Margin="5"/>
+						<TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+					</StackPanel>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
 	</Grid>
 </UserControl>
