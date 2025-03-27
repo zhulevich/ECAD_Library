@@ -11,6 +11,13 @@
   </ItemGroup>
   
   <ItemGroup>
+    <AvaloniaXaml Remove="Utilities\**" />
+    <Compile Remove="Utilities\**" />
+    <EmbeddedResource Remove="Utilities\**" />
+    <None Remove="Utilities\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <None Remove="Pictures\dc.png" />
     <None Remove="Pictures\diode.png" />
     <None Remove="Pictures\resistor.png" />
