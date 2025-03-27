@@ -38,18 +38,17 @@ namespace ECAD_Library.Controls
             {
                 if (e.Data.Get("PaletteItem") is PalleteItem item)
                 {
-                    var image = new Image
+                    var canvasItem = new CanvasItem
                     {
-                        Source = item.Icon,
-                        Width = 50,
-                        Height = 50
+                        Icon = item.Icon,
+                        Name = item.Name
                     };
 
                     var position = e.GetPosition(canvas);
-                    Canvas.SetLeft(image, position.X);
-                    Canvas.SetTop(image, position.Y);
+                    Canvas.SetLeft(canvasItem, position.X);
+                    Canvas.SetTop(canvasItem, position.Y);
 
-                    canvas.Children.Add(image);
+                    canvas.Children.Add(canvasItem);
                 }
             }
         }
@@ -73,24 +72,33 @@ namespace ECAD_Library.Controls
         {
             var point = e.GetCurrentPoint(this);
 
-            // Если нажата левая кнопка мыши и панорамирование не активно
             if (point.Properties.IsLeftButtonPressed && !_isPanning)
             {
-                // Проверяем, был ли клик по какому-либо элементу
+                // Проверяем, по какому элементу кликнули
                 var hitTestResult = this.InputHitTest(point.Position);
-                if (hitTestResult is Image image)
+                if (hitTestResult is Control control)
                 {
-                    // Выбираем объект
-                    _selectedElement = image;
-                    _lastMousePosition = point.Position;
+                    // Поднимаемся по дереву элементов, чтобы найти родительский CanvasItem
+                    while (control is not null && control is not CanvasItem)
+                    {
+                        control = control.Parent as Control;
+                    }
+
+                    if (control is CanvasItem canvasItem)
+                    {
+                        _selectedElement = canvasItem;
+                        _lastMousePosition = point.Position;
+                    }
                 }
             }
-            if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+
+            if (point.Properties.IsLeftButtonPressed)
             {
                 _isPanning = true;
                 _lastMousePosition = e.GetPosition(this);
             }
         }
+
 
         private void OnPointerMoved(object? sender, PointerEventArgs e)
         {
