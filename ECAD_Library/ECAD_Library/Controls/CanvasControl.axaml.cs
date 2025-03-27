@@ -13,6 +13,7 @@ namespace ECAD_Library.Controls
         private ScaleTransform _scaleTransform;
         private TranslateTransform _translateTransform;
         private TransformGroup _transformGroup;
+        private Control? _selectedElement;
 
         public CanvasControl()
         {
@@ -70,6 +71,20 @@ namespace ECAD_Library.Controls
 
         private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
         {
+            var point = e.GetCurrentPoint(this);
+
+            // Если нажата левая кнопка мыши и панорамирование не активно
+            if (point.Properties.IsLeftButtonPressed && !_isPanning)
+            {
+                // Проверяем, был ли клик по какому-либо элементу
+                var hitTestResult = this.InputHitTest(point.Position);
+                if (hitTestResult is Image image)
+                {
+                    // Выбираем объект
+                    _selectedElement = image;
+                    _lastMousePosition = point.Position;
+                }
+            }
             if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
             {
                 _isPanning = true;
@@ -79,8 +94,25 @@ namespace ECAD_Library.Controls
 
         private void OnPointerMoved(object? sender, PointerEventArgs e)
         {
-            if (_isPanning)
+            if (_selectedElement != null)
             {
+                // Логика перемещения объекта
+                var currentPosition = e.GetPosition(this);
+
+                // Получаем текущие координаты объекта
+                double left = Canvas.GetLeft(_selectedElement);
+                double top = Canvas.GetTop(_selectedElement);
+
+                // Обновляем координаты объекта
+                Canvas.SetLeft(_selectedElement, left + (currentPosition.X - _lastMousePosition.X));
+                Canvas.SetTop(_selectedElement, top + (currentPosition.Y - _lastMousePosition.Y));
+
+                // Обновляем последнюю позицию мыши
+                _lastMousePosition = currentPosition;
+            }
+            else if (_isPanning)
+            {
+                // Логика панорамирования остается той же
                 var currentPosition = e.GetPosition(this);
                 var delta = currentPosition - _lastMousePosition;
 
@@ -89,11 +121,16 @@ namespace ECAD_Library.Controls
 
                 _lastMousePosition = currentPosition;
             }
+            
         }
 
         private void OnPointerReleased(object? sender, PointerReleasedEventArgs e)
-        {
-            _isPanning = false;
-        }
+{
+    // Отключаем панорамирование
+    _isPanning = false;
+
+    // Снимаем выбор с объекта
+    _selectedElement = null;
+}
     }
 }
