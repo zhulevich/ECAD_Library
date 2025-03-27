@@ -1,8 +1,8 @@
-<UserControl  
-	x:Class="ECAD_Library.Controls.CanvasControl"
+<Canvas
+    x:Class="ECAD_Library.Controls.CanvasControl"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:b="using:yoSim.Utilities.Behaviors"
+    xmlns:b="using:ECAD_Library.Utilities.Behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="using:Avalonia.Xaml.Interactivity"
     xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
@@ -12,5 +12,4 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-	
-</UserControl>
+</Canvas>

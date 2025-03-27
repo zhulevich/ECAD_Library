@@ -1,22 +1,21 @@
-using Avalonia;
+п»їusing Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 using Avalonia.Xaml.Interactions.DragAndDrop;
 using ECAD_Library.Models;
-using System;
 
-namespace ECAD_Library.Controls
+namespace ECAD_Library.Utilities.Behaviors
 {
-    public partial class CanvasControl : Canvas
+    public class CanvasDropHandler : DropHandlerBase
     {
-        public CanvasControl()
+        public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
         {
-            DragDrop.SetAllowDrop(this, true);
-            AddHandler(DragDrop.DropEvent, Drop);
+            return e.Data.Contains("PaletteItem");
         }
 
-        public void Drop(object? sender, DragEventArgs e, object? sourceContext, object? targetContext)
+        public override void Drop(object? sender, DragEventArgs e, object? sourceContext, object? targetContext)
         {
             if (sender is Canvas canvas && e.Data.Get("PaletteItem") is PalleteItem item)
             {
@@ -27,7 +26,7 @@ namespace ECAD_Library.Controls
                     Height = 50
                 };
 
-                // Получаем координаты мыши относительно канваса
+                // РџРѕР»СѓС‡Р°РµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ РјС‹С€Рё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РєР°РЅРІР°СЃР°
                 var position = e.GetPosition(canvas);
                 Canvas.SetLeft(image, position.X);
                 Canvas.SetTop(image, position.Y);

@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:ECAD_Library.Models"
+             x:Class="ECAD_Library.Controls.PaletteControl"
+             x:DataType="models:PalleteItem">
+
+	<ItemsControl ItemsSource="{Binding}">
+		<ItemsControl.ItemTemplate>
+			<DataTemplate x:DataType="models:PalleteItem">
+				<StackPanel Orientation="Vertical">
+					<Image Source="{Binding Icon}" Width="50" Height="60"
+                           Margin="0,0,0,0"
+						   PointerPressed="OnDragStart"/>
+					<TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
+                               FontStyle="Oblique" Margin="0,-13,0,0"/>
+				</StackPanel>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+	</ItemsControl>
+</UserControl>
