@@ -4,6 +4,9 @@ using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using System.Collections.Generic;
+using System;
+using System.Reactive.Linq;
 
 namespace ECAD_Library.Controls
 {
@@ -26,37 +29,61 @@ namespace ECAD_Library.Controls
             get => GetValue(NameProperty);
             set => SetValue(NameProperty, value);
         }
+        public static readonly StyledProperty<List<Point>> ConnectionPointsProperty =
+    AvaloniaProperty.Register<CanvasItem, List<Point>>(nameof(ConnectionPoints));
 
+        public List<Point> ConnectionPoints
+        {
+            get => GetValue(ConnectionPointsProperty);
+            set => SetValue(ConnectionPointsProperty, value);
+        }
+        private Canvas _connectionCanvas;
         public CanvasItem()
         {
-            var stackPanel = new StackPanel { Orientation = Orientation.Vertical };
+            var grid = new Grid();
+
             var image = new Image
             {
                 Width = 50,
                 Height = 50,
-                HorizontalAlignment = HorizontalAlignment.Center
-            };
-
-            var text = new TextBlock
-            {
-                FontSize = 10,
-                Width = 60,
-                Height = 20,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                TextAlignment = TextAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            image.Bind(Image.SourceProperty, this.GetObservable(IconProperty));
+            grid.Children.Add(image);
+
+            _connectionCanvas = new Canvas
+            {
+                Width = 50,
+                Height = 50,
+                IsHitTestVisible = true // если кнопки не нужны для кликов
             };
 
-            image.Bind(Image.SourceProperty, this.GetObservable(IconProperty));
-            text.Bind(TextBlock.TextProperty, this.GetObservable(NameProperty));
-
-            stackPanel.Children.Add(image);
-            stackPanel.Children.Add(text);
-
-            Content = stackPanel;
-
-
+            grid.Children.Add(_connectionCanvas);
+            Content = grid;
         }
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
 
+            if (ConnectionPoints != null)
+            {
+                foreach (var point in ConnectionPoints)
+                {
+                    var btn = new Button
+                    {
+                        Width = 5,
+                        Height = 5,
+                        Background = Brushes.Blue,
+                        BorderThickness = new Thickness(1),
+                        IsHitTestVisible = true
+                    };
+                    Canvas.SetLeft(btn, point.X );
+                    Canvas.SetTop(btn, point.Y );
+                    _connectionCanvas.Children.Add(btn);
+                }
+            }
+        }
     }
 }
 

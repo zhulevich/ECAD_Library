@@ -41,9 +41,10 @@ namespace ECAD_Library.Controls
                     var canvasItem = new CanvasItem
                     {
                         Icon = item.Icon,
-                        Name = item.Name
+                        Name = item.Name,
+                        
                     };
-
+                    canvasItem.ConnectionPoints = item.ConnectionPoints; // установить отдельно после конструктора
                     var position = e.GetPosition(canvas);
                     Canvas.SetLeft(canvasItem, position.X);
                     Canvas.SetTop(canvasItem, position.Y);
