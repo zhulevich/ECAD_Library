@@ -16,7 +16,7 @@ namespace ECAD_Library.Controls
             if (sender is Image image && image.DataContext is PalleteItem item)
             {
                 var data = new DataObject();
-                data.Set("PaletteItem", item); // Используем уникальный идентификатор
+                data.Set("PaletteItem", item); 
 
                 DragDrop.DoDragDrop(e, data, DragDropEffects.Copy);
             }

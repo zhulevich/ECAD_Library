@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Media;
 using ECAD_Library.Models;
@@ -14,6 +15,11 @@ namespace ECAD_Library.Controls
         private TranslateTransform _translateTransform;
         private TransformGroup _transformGroup;
         private Control? _selectedElement;
+        private Button? _startConnector;
+        private Polyline? _tempPolyline;
+        private bool _isDrawingConnection = false;
+        private CanvasItem? _startItem;
+
 
         public CanvasControl()
         {
@@ -32,6 +38,32 @@ namespace ECAD_Library.Controls
             PointerMoved += OnPointerMoved;
             PointerReleased += OnPointerReleased;
         }
+
+        public void HandleConnectionClick(Button btn, Point localPoint, CanvasItem item)
+        {
+            var itemLeft = Canvas.GetLeft(item);
+            var itemTop = Canvas.GetTop(item);
+
+            var globalPoint = new Point(itemLeft + localPoint.X, itemTop + localPoint.Y);
+
+            if (!_isDrawingConnection)
+            {
+                StartConnectionFrom(btn, globalPoint);
+                _startConnector = btn;
+                _startItem = item;
+            }
+            else
+            {
+                if (_startConnector != btn) 
+                {
+                    TryCompleteConnection(btn, globalPoint);
+                }
+
+                _startConnector = null;
+                _startItem = null;
+                _isDrawingConnection = false;
+            }
+        }
         private void OnDrop(object? sender, DragEventArgs e)
         {
             if (sender is Canvas canvas && e.Data.Contains("PaletteItem"))
@@ -42,9 +74,10 @@ namespace ECAD_Library.Controls
                     {
                         Icon = item.Icon,
                         Name = item.Name,
-                        
+                        ParentCanvas = this
                     };
-                    canvasItem.ConnectionPoints = item.ConnectionPoints; // установить отдельно после конструктора
+
+                    canvasItem.ConnectionPoints = item.ConnectionPoints; 
                     var position = e.GetPosition(canvas);
                     Canvas.SetLeft(canvasItem, position.X);
                     Canvas.SetTop(canvasItem, position.Y);
@@ -75,11 +108,11 @@ namespace ECAD_Library.Controls
 
             if (point.Properties.IsLeftButtonPressed && !_isPanning)
             {
-                // Проверяем, по какому элементу кликнули
+
                 var hitTestResult = this.InputHitTest(point.Position);
                 if (hitTestResult is Control control)
                 {
-                    // Поднимаемся по дереву элементов, чтобы найти родительский CanvasItem
+
                     while (control is not null && control is not CanvasItem)
                     {
                         control = control.Parent as Control;
@@ -103,25 +136,30 @@ namespace ECAD_Library.Controls
 
         private void OnPointerMoved(object? sender, PointerEventArgs e)
         {
+            if (_isDrawingConnection && _tempPolyline != null)
+            {
+                var start = _tempPolyline.Points[0];
+                var current = e.GetPosition(this);
+
+                _tempPolyline.Points[1] = new Point(current.X, start.Y);
+                _tempPolyline.Points[2] = current;
+            }
             if (_selectedElement != null)
             {
-                // Логика перемещения объекта
+
                 var currentPosition = e.GetPosition(this);
 
-                // Получаем текущие координаты объекта
+
                 double left = Canvas.GetLeft(_selectedElement);
                 double top = Canvas.GetTop(_selectedElement);
 
-                // Обновляем координаты объекта
                 Canvas.SetLeft(_selectedElement, left + (currentPosition.X - _lastMousePosition.X));
                 Canvas.SetTop(_selectedElement, top + (currentPosition.Y - _lastMousePosition.Y));
 
-                // Обновляем последнюю позицию мыши
                 _lastMousePosition = currentPosition;
             }
             else if (_isPanning)
             {
-                // Логика панорамирования остается той же
                 var currentPosition = e.GetPosition(this);
                 var delta = currentPosition - _lastMousePosition;
 
@@ -130,16 +168,44 @@ namespace ECAD_Library.Controls
 
                 _lastMousePosition = currentPosition;
             }
-            
+
         }
 
-        private void OnPointerReleased(object? sender, PointerReleasedEventArgs e)
-{
-    // Отключаем панорамирование
-    _isPanning = false;
+        private void TryCompleteConnection(Button btn, Point globalPoint)
+        {
+            if (_tempPolyline != null)
+            {
+                var start = _tempPolyline.Points[0];
 
-    // Снимаем выбор с объекта
-    _selectedElement = null;
-}
+                _tempPolyline.Points[1] = new Point(globalPoint.X, start.Y);
+                _tempPolyline.Points[2] = globalPoint;
+
+                _tempPolyline = null;
+            }
+        }
+        private void StartConnectionFrom(Button btn, Point globalPoint)
+        {
+            _tempPolyline = new Polyline
+            {
+                Stroke = Brushes.Black,
+                StrokeThickness = 2,
+                Points = new Points
+        {
+            globalPoint,
+            globalPoint,
+            globalPoint
+        }
+            };
+            Children.Add(_tempPolyline);
+            _isDrawingConnection = true;
+        }
+        private void OnPointerReleased(object? sender, PointerReleasedEventArgs e)
+        {
+
+            _isPanning = false;
+
+
+            _selectedElement = null;
+        }
     }
 }

@@ -22,6 +22,7 @@
     <None Remove="Pictures\diode.png" />
     <None Remove="Pictures\resistor.png" />
     <None Remove="Pictures\transistor.png" />
+    <None Remove="Pictures\Безымянный.png" />
   </ItemGroup>
   
   <ItemGroup>
@@ -29,6 +30,7 @@
     <EmbeddedResource Include="Pictures\diode.png" />
     <EmbeddedResource Include="Pictures\resistor.png" />
     <EmbeddedResource Include="Pictures\transistor.png" />
+    <EmbeddedResource Include="Pictures\Безымянный.png" />
   </ItemGroup>
 
   <ItemGroup>

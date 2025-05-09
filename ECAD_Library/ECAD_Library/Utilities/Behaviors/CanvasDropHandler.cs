@@ -26,7 +26,6 @@ namespace ECAD_Library.Utilities.Behaviors
                     Height = 50
                 };
 
-                // Получаем координаты мыши относительно канваса
                 var position = e.GetPosition(canvas);
                 Canvas.SetLeft(image, position.X);
                 Canvas.SetTop(image, position.Y);

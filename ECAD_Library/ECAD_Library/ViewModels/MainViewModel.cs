@@ -22,14 +22,44 @@ namespace ECAD_Library.ViewModels
                 new Point(40, 25), // справа по центру
             }
         },
+            new PalleteItem
+        {
+            Name = "diode",
+            Icon = LoadBitmap("ECAD_Library.Pictures.diode.png"),
+            ConnectionPoints = new List<Point>
+            {
+                new Point(0, 25),  // слева по центру
+                new Point(40, 25), // справа по центру
+            }
+        },
+            new PalleteItem
+        {
+            Name = "transistor",
+            Icon = LoadBitmap("ECAD_Library.Pictures.transistor.png"),
+            ConnectionPoints = new List<Point>
+            {
+                new Point(0, 25),  // слева по центру
+                new Point(40, 25), // справа по центру
+            }
+        },
         new PalleteItem
         {
             Name = "dc",
             Icon = LoadBitmap("ECAD_Library.Pictures.dc.png"),
             ConnectionPoints = new List<Point>
             {
-                new Point(25, 0), // сверху по центру
-                new Point(25, 50) // снизу по центру
+                new Point(31, 6), // сверху по центру
+                new Point(31, 42) // снизу по центру
+            }
+        },
+        new PalleteItem
+        {
+            Name = "dc",
+            Icon = LoadBitmap("ECAD_Library.Pictures.Безымянный.png"),
+            ConnectionPoints = new List<Point>
+            {
+                 new Point(10, 25),  // слева по центру
+                new Point(35, 25), // справа по центру
             }
         },
     };
