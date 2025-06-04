@@ -76,7 +76,7 @@ namespace ECAD_Library.ViewModels
         new PalleteItem
         {
             Name = "Переключатель",
-            Icon = LoadBitmap("ECAD_Library.Pictures.switch.png"),
+            Icon = LoadBitmap("ECAD_Library.Pictures.switch1.png"),
             ConnectionPoints = new List<Point>
             {
                  new Point(0, 25),  // слева по центру
@@ -87,6 +87,16 @@ namespace ECAD_Library.ViewModels
         {
             Name = "Катушка",
             Icon = LoadBitmap("ECAD_Library.Pictures.coil.png"),
+            ConnectionPoints = new List<Point>
+            {
+                 new Point(0, 14),  // слева по центру
+                new Point(45, 32), // справа по центру
+            }
+        },
+        new PalleteItem
+        {
+            Name = "Ардуино",
+            Icon = LoadBitmap("ECAD_Library.Pictures.arduino.png"),
             ConnectionPoints = new List<Point>
             {
                  new Point(0, 14),  // слева по центру

@@ -18,6 +18,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="Pictures\arduino.png" />
     <None Remove="Pictures\battery-48.png" />
     <None Remove="Pictures\capacitor.png" />
     <None Remove="Pictures\dc.png" />
@@ -25,19 +26,21 @@
     <None Remove="Pictures\diode.png" />
     <None Remove="Pictures\resistor.png" />
     <None Remove="Pictures\switch.png" />
+    <None Remove="Pictures\switch1.png" />
     <None Remove="Pictures\transistor-64.png" />
     <None Remove="Pictures\transistor.png" />
     <None Remove="Pictures\Безымянный.png" />
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Pictures\arduino.png" />
     <EmbeddedResource Include="Pictures\battery-48.png" />
     <EmbeddedResource Include="Pictures\capacitor.png" />
     <EmbeddedResource Include="Pictures\coil.png" />
     <EmbeddedResource Include="Pictures\dc.png" />
     <EmbeddedResource Include="Pictures\diode-64.png" />
     <EmbeddedResource Include="Pictures\resistor.png" />
-    <EmbeddedResource Include="Pictures\switch.png" />
+    <EmbeddedResource Include="Pictures\switch1.png" />
     <EmbeddedResource Include="Pictures\transistor-64.png" />
   </ItemGroup>
 

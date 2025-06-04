@@ -53,7 +53,6 @@ namespace ECAD_Library.Controls
                 Spacing = 10
             };
 
-            // Заголовок с именем компонента
             var nameTextBlock = new TextBlock
             {
                 FontSize = 16,
@@ -65,7 +64,6 @@ namespace ECAD_Library.Controls
 
             mainStackPanel.Children.Add(nameTextBlock);
 
-            // Список свойств
             var propertiesItemsControl = new ItemsControl();
             propertiesItemsControl.Bind(ItemsControl.ItemsSourceProperty, this.GetObservable(PropertiesProperty));
 
@@ -121,7 +119,6 @@ namespace ECAD_Library.Controls
 
             mainStackPanel.Children.Add(propertiesItemsControl);
 
-            // Кнопки
             var buttonPanel = new StackPanel
             {
                 Orientation = Orientation.Horizontal,

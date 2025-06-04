@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAD_Library.iOS", "ECAD_Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAD_Library.Browser", "ECAD_Library\ECAD_Library.Browser\ECAD_Library.Browser.csproj", "{49DB040D-1FC9-47C3-B124-A2F632B66A7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECAD.Tests", "ECAD.Tests\ECAD.Tests.csproj", "{55F604C7-F5E9-4F74-8967-F099D81E91B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{49DB040D-1FC9-47C3-B124-A2F632B66A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49DB040D-1FC9-47C3-B124-A2F632B66A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49DB040D-1FC9-47C3-B124-A2F632B66A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55F604C7-F5E9-4F74-8967-F099D81E91B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F604C7-F5E9-4F74-8967-F099D81E91B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F604C7-F5E9-4F74-8967-F099D81E91B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F604C7-F5E9-4F74-8967-F099D81E91B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
